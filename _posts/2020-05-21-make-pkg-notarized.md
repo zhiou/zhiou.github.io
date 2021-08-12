@@ -17,9 +17,9 @@ tags:
 以公司MacOSX安装包为例，公证成功的前提如下：
 
 1. 所有binary archive，如app， dylib， framework，kext，以及打包的pkg都需要用developer ID类型证书签名，以其他类型证书签名公证会给出错误原因The binary is not signed with a valid Developer ID certificate。其中pkg需要Developer ID installer类型的证书。
-2. 凡是需要签名的内容都需要在Build Settings 的Other Code Signing Flags 选项添加--timestamp，这个选项顾名思义，会在签名时打上时间戳，可以用```codesign -d -vv xxx```看到签名内容中增加了Timestamp项![企业微信截图_54705905-c76f-43aa-80d7-c2ba73dd6fd7](assets/img/topic/企业微信截图_54705905-c76f-43aa-80d7-c2ba73dd6fd7.png)
+2. 凡是需要签名的内容都需要在Build Settings 的Other Code Signing Flags 选项添加--timestamp，这个选项顾名思义，会在签名时打上时间戳，可以用```codesign -d -vv xxx```看到签名内容中增加了Timestamp项![企业微信截图_54705905-c76f-43aa-80d7-c2ba73dd6fd7]({{site.baseurl}}/make-pkg-notarized/assets/img/topic/企业微信截图_54705905-c76f-43aa-80d7-c2ba73dd6fd7.png)
 
-3. app需要开启hardened Runtime，Hardened Runtime的选项可以根据需要勾选![企业微信截图_e148fcd9-4379-4bed-8d15-04b294b768c3](assets/img/topic/企业微信截图_e148fcd9-4379-4bed-8d15-04b294b768c3.png)
+3. app需要开启hardened Runtime，Hardened Runtime的选项可以根据需要勾选![企业微信截图_e148fcd9-4379-4bed-8d15-04b294b768c3]({{site.baseurl}}/make-pkg-notarized/assets/img/topic/企业微信截图_e148fcd9-4379-4bed-8d15-04b294b768c3.png)
 
 4. 需要申请公证用的密码，公证时需要提供用户名和密码，用户名是Apple ID的用户名，但密码是另外的，如果使用Apple ID的密码做公证，会收到错误提示Error: code -22016 (Unable to validate your application. We are unable to create an authentication session.)。
 
@@ -31,7 +31,7 @@ tags:
 
    上面的命令需要将'$APPLE_ID'和'\$NOTARIZE_PASSWORD' 替换为实际apple id和公证密码。后面公证时就可以在命令行中用@keychain:MAC_NOTARIZE获取公证密码了。
 
-![企业微信截图_b8c94fd1-5a54-4cf0-9821-fd9d795f97c3](assets/img/topic/企业微信截图_b8c94fd1-5a54-4cf0-9821-fd9d795f97c3.png)
+![企业微信截图_b8c94fd1-5a54-4cf0-9821-fd9d795f97c3]({{site.baseurl}}/make-pkg-notarized/assets/img/topic/企业微信截图_b8c94fd1-5a54-4cf0-9821-fd9d795f97c3.png)
 
 ## 公证
 
@@ -49,11 +49,11 @@ tags:
 
 ```xcrun altool --list-providers -u $APPLE_ID -p @keychain:MAC_NOTARIZE```
 
-##![企业微信截图_f5b993e8-ed2d-43c8-bf7a-480b6c462279](assets/img/topic/企业微信截图_f5b993e8-ed2d-43c8-bf7a-480b6c462279.png)
+##![企业微信截图_f5b993e8-ed2d-43c8-bf7a-480b6c462279]({{site.baseurl}}/make-pkg-notarized/assets/img/topic/企业微信截图_f5b993e8-ed2d-43c8-bf7a-480b6c462279.png)
 
 这时一切顺利的话，公证指令就会返回一个请求的uuid，如下：
 
-![企业微信截图_a781d49e-f7a9-476d-9a47-1880e70cdb21](assets/img/topic/企业微信截图_a781d49e-f7a9-476d-9a47-1880e70cdb21.png)
+![企业微信截图_a781d49e-f7a9-476d-9a47-1880e70cdb21]({{site.baseurl}}/make-pkg-notarized/assets/img/topic/企业微信截图_a781d49e-f7a9-476d-9a47-1880e70cdb21.png)
 
 通过RequestUUID，我们可以查询此次公证的结果
 
@@ -77,11 +77,11 @@ Status Message: Package Invalid
 
 根据访问LogFileURL，可以了解公证失败的原因是因为使用了非Developer ID类型的证书
 
-![企业微信截图_0daca2ed-2a31-4ab2-b251-42b75299b0e5](assets/img/topic/企业微信截图_0daca2ed-2a31-4ab2-b251-42b75299b0e5.png)
+![企业微信截图_0daca2ed-2a31-4ab2-b251-42b75299b0e5]({{site.baseurl}}/make-pkg-notarized/assets/img/topic/企业微信截图_0daca2ed-2a31-4ab2-b251-42b75299b0e5.png)
 
 如果公证通过，那么返回的内容中Status为success。
 
-![企业微信截图_98b29973-4858-4f18-a8c6-7d15c7b5dff5](assets/img/topic/企业微信截图_98b29973-4858-4f18-a8c6-7d15c7b5dff5.png)
+![企业微信截图_98b29973-4858-4f18-a8c6-7d15c7b5dff5]({{site.baseurl}}/make-pkg-notarized/assets/img/topic/企业微信截图_98b29973-4858-4f18-a8c6-7d15c7b5dff5.png)
 
 ### 验证
 
@@ -93,7 +93,7 @@ Status Message: Package Invalid
 
 显示的结果类似
 
-![企业微信截图_ee892131-cad9-45ce-b67d-25e90c128dca](assets/img/topic/企业微信截图_ee892131-cad9-45ce-b67d-25e90c128dca.png)
+![企业微信截图_ee892131-cad9-45ce-b67d-25e90c128dca]({{site.baseurl}}/make-pkg-notarized/assets/img/topic/企业微信截图_ee892131-cad9-45ce-b67d-25e90c128dca.png)
 
 注意source后带Notarized即为公证成功，否则是不带的。
 
@@ -107,7 +107,7 @@ Status Message: Package Invalid
 
 然后通过```xcrun stapler staple -v $NOTARIZED_TARGET``` 来查看是否成功
 
-![企业微信截图_3fe9bf39-d56f-472a-bbbd-ce95f75e0265](assets/img/topic/企业微信截图_3fe9bf39-d56f-472a-bbbd-ce95f75e0265.png)
+![企业微信截图_3fe9bf39-d56f-472a-bbbd-ce95f75e0265]({{site.baseurl}}/make-pkg-notarized/assets/img/topic/企业微信截图_3fe9bf39-d56f-472a-bbbd-ce95f75e0265.png)
 
 
 
