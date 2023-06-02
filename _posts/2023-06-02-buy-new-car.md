@@ -1,13 +1,14 @@
+---
 priority: 0.6
 title: 换车咯
 excerpt: 生活杂谈
 categories: [Summarise]
 background-image: climb.jpeg
 tags:
-
   - 经济
   - 买车
   - 灌水
+---
 
 终于到了换车的时候，15年买的人生第一辆车。
 
